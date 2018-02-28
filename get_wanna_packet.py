@@ -5,7 +5,7 @@ import threading
 
 def start(filename):
     print('----- {} -----'.format(filename))
-    cmd = subprocess.getoutput("tshark -r " + filename + " -Y 'tcp.port == 445 and not smb2 and smb contains 00:31:00:39:00:32:00:2e:00:31:00:36:00:38:00:2e:00:35:00:36:00:2e:00:32:00:30 or smb contains 00:31:00:37:00:32:00:2e:00:31:00:36:00:2e:00:39:00:39:00:2e:00:35' -T fields -e tcp.stream |sort -un")
+    cmd = subprocess.getoutput("tshark -r " + filename + " -Y 'tcp.port == 445 and not smb2 and smb contains 00:31:00:39:00:32:00:2e:00:31:00:36:00:38:00:2e:00:35:00:36:00:2e:00:32:00:30 or smb contains 00:31:00:37:00:32:00:2e:00:31:00:36:00:2e:00:39:00:39:00:2e:00:35 or smb_pipe' -T fields -e tcp.stream |sort -un")
 
     if not cmd:
         print("Not found")
